@@ -1,0 +1,51 @@
+:root {
+    --box-shadow: 0 0.25rem 0.5rem -0.25rem var(--box-shadow-color), 0 0 0.5rem -0.25rem var(--box-shadow-color);
+    --box-shadow-big: 0 0.5rem 1rem -0.5rem var(--box-shadow-color), 0 0 1rem -0.5rem var(--box-shadow-color);
+    --navigation-bar-height: 3rem;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-weight: 500;
+    color: var(--font-color);
+}
+
+[color-theme="light"] {
+    --primary-color: red;
+    --secondary-color: darkorange;
+    --font-color: black;
+    --font-color-light: grey;
+    --background-color: white;
+    --background-color-dark: white;
+    --border-color: rgb(182, 182, 182);
+    --border-color-light: rgb(230, 230, 230);
+    --box-shadow-color: rgba(0,0,0,0.2);
+    --success-color: rgb(23, 92, 44);
+    --error-color: rgb(224, 48, 30);
+    --warning-color: rgb(225, 182, 0);
+}
+
+[color-theme="dark"] {
+    --primary-color: red;
+    --secondary-color: darkorange;
+    --font-color: white;
+    --font-color-light: darkgrey;
+    --background-color: black;
+    --background-color-dark: black;
+    --border-color: rgb(182, 182, 182);
+    --border-color-light: rgb(230, 230, 230);
+    --box-shadow-color: rgba(0,0,0,0.2);
+    --success-color: rgb(111, 255, 111);
+    --error-color: rgb(255, 80, 80);
+    --warning-color: rgb(225, 182, 0);
+}
+
+html,
+body,
+app-root {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

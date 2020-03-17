@@ -1,0 +1,6 @@
+<ng-container *ngIf="data.action; else noAction">
+    <mat-icon [matTooltip]="data.description" (click)="data.action()" style="cursor: pointer;">{{ data.iconName }}</mat-icon>
+</ng-container>
+<ng-template #noAction>
+    <mat-icon [matTooltip]="data.description">{{ data.iconName }}</mat-icon>
+</ng-template>
