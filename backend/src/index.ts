@@ -1,36 +1,19 @@
-import express from "express";
-import * as socketio from "socket.io";
+import express from 'express';
+import { Request, Response } from 'express';
+import { router as userRouter } from './routes/user-route';
+import { router as financialUnitRouter } from './routes/financial-unit-route';
 
 const app = express();
-app.set("port", 8080);
 
-let http = require("http").Server(app);
-let io: SocketIO.Server = require("socket.io")(http);
+app.use(userRouter);
+app.use(financialUnitRouter);
 
-
-let data = ['', '', '', ''];
-
-
-app.get("/", (_req: express.Request, res: express.Response) => {
+app.get("/", (_req: Request, res: Response) => {
+  console.log('Request at / route received');
   res.send('<p>Express works</p>');
 });
 
-io.on("connection", function(socket: socketio.Socket) {
-  console.log("a user connected");
-  socket.emit('initial-data', data);
-  socket.on('message-from-client', (message: any) => {
-      console.log(message);
-      if (message) {
-          console.log(data);
-          const newData = [...data];
-          newData[message.key] = message.value;
-          data = newData;
-          console.log(data);
-          socket.broadcast.emit('message-from-server', message);
-      }
-  });
-});
-
-http.listen(8080, function() {
+app.listen(8080, function() {
   console.log("listening on *:8080");
 });
+
