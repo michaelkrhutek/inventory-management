@@ -1,7 +1,1 @@
-<div style="padding: 2rem;">
-    <p>home works!</p>
-<div style="display: flex; flex-direction: column;">
-    <input *ngFor="let item of (data$ | async); let key = index; trackBy: trackByFn"
-    type="text" [value]="item" (keyup)="emitSocketEvent(key, $event.target.value)">
-</div>
-</div>
+<p>home works!</p>

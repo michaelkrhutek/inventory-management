@@ -31,6 +31,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewInventoryItemComponent } from './views/new-inventory-item/new-inventory-item.component';
 import { InventoryTransactionsComponent } from './views/inventory-transactions/inventory-transactions.component';
 import { NewInventoryTransactionComponent } from './views/new-inventory-transaction/new-inventory-transaction.component';
+import { FinancialUnitsComponent } from './views/financial-units/financial-units.component';
+import { NewFinancialUnitComponent } from './views/new-financial-unit/new-financial-unit.component';
+import { FinancialAccountsComponent } from './views/financial-accounts/financial-accounts.component';
+import { NewFinancialAccountComponent } from './views/new-financial-account/new-financial-account.component';
+import { NewFinancialPeriodComponent } from './views/new-financial-period/new-financial-period.component';
+import { NewInventoryGroupItemsComponent } from './views/new-inventory-group-items/new-inventory-group-items.component';
+import { environment } from 'src/environments/environment';
+
+export const getBaseUrl = () => {
+  if (environment.production) {
+    console.log(document.getElementsByTagName('base')[0].href);
+    return document.getElementsByTagName('base')[0].href;
+  } else {
+    return 'http://localhost:8080/';
+  }
+}
 
 @NgModule({
   declarations: [
@@ -44,7 +60,13 @@ import { NewInventoryTransactionComponent } from './views/new-inventory-transact
     IconItemComponent,
     NewInventoryItemComponent,
     InventoryTransactionsComponent,
-    NewInventoryTransactionComponent
+    NewInventoryTransactionComponent,
+    FinancialUnitsComponent,
+    NewFinancialUnitComponent,
+    FinancialAccountsComponent,
+    NewFinancialAccountComponent,
+    NewFinancialPeriodComponent,
+    NewInventoryGroupItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +87,9 @@ import { NewInventoryTransactionComponent } from './views/new-inventory-transact
     ReactiveFormsModule,
     NoopAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

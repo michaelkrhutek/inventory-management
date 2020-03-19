@@ -1,5 +1,7 @@
-export interface IInventoryItem {
-    id: number;
+import { IBasicDbModel } from "./basic-db-model";
+
+export interface IInventoryItem extends IBasicDbModel {
     name: string;
-    inventpryItemsGroupId: number;
+    financialUnitGroupId: string;
+    inventoryItemsGroupId: string;
 }

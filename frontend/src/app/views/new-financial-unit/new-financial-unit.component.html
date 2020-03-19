@@ -1,0 +1,17 @@
+<div class="modal-container">
+    <div class="modal">
+        <div class="modal-header">
+            New financial unit
+        </div>
+        <div class="modal-content">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput [formControl]="nameFC">
+            </mat-form-field>
+        </div>
+        <div class="modal-actions">
+            <button mat-button color="primary" (click)="closeModal()">Close</button>
+            <button mat-flat-button color="primary" (click)="createFinancialUnit()">Create</button>
+        </div>
+    </div>   
+</div>

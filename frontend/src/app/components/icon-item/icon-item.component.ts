@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { IIconItem } from 'src/app/models/icon-item';
 
 @Component({
   selector: 'app-icon-item',
@@ -6,11 +7,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./icon-item.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class IconItemComponent implements OnInit {
+export class IconItemComponent {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  @Input() data: IIconItem;
 }

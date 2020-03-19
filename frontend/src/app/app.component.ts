@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
   title = 'real-time-app';
+
+  ngOnInit(): void {
+    document.documentElement.setAttribute('color-theme', 'dark');
+    document.getElementsByTagName('html')[0].setAttribute('class', 'dark-theme');
+  }
 }

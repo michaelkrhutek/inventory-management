@@ -27,11 +27,11 @@
     --secondary-color: darkorange;
     --font-color: white;
     --font-color-light: darkgrey;
-    --background-color: black;
-    --background-color-dark: black;
+    --background-color: rgb(20, 20, 20);
+    --background-color-dark: rgb(10, 10, 10);
     --border-color: rgb(182, 182, 182);
     --border-color-light: rgb(230, 230, 230);
-    --box-shadow-color: rgba(0,0,0,0.2);
+    --box-shadow-color: rgba(0,0,0,1);
     --success-color: rgb(111, 255, 111);
     --error-color: rgb(255, 80, 80);
     --warning-color: rgb(225, 182, 0);
@@ -46,6 +46,63 @@ app-root {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  background-color: var(--background-color-dark);
+  overflow: hidden;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.modal-container {
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.6);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    max-width: calc(100vw - 2rem);
+    height: fit-content;
+    max-height: calc(100vh - 2rem);
+    overflow: hidden;
+    background-color: var(--background-color);
+}
+
+.modal > * {
+    padding: 2rem 2rem 0 2rem;
+}
+
+.modal > *:last-child {
+    padding-bottom: 2rem;
+}
+
+.modal-header {
+    font-size: 2rem;
+    color: var(--font-color-light);
+    font-weight: lighter;
+    text-align: center;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-shrink: 1;
+}
+
+.modal-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.modal-actions > button {
+    margin-right: 1rem;
+}
+
+.modal-actions > button:last-child {
+    margin-right: 0;
+}

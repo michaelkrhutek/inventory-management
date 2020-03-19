@@ -1,32 +1,36 @@
-import * as financialUnitService from '../services/financial-unit-service'
+import * as financialUnitService from '../services/financial-unit-service';
+import * as logService from '../services/log-service';
 import { Router, Request, Response } from 'express';
 import { IFinancialUnit } from '../models/financial-unit-model';
 
 export const router = Router();
 
-router.get('/financialunit/createfinancialunit', (req: Request, res: Response) => {
-    console.log('Request at /financialunit/createfinancialunit route received');
+router.post('/createfinancialunit', (req: Request, res: Response) => {
+    logService.logActivity(req);
     const name: string = req.query.name;
     if (!name) {
         res.status(400).send('Missing URL parameter: name');
     }
     financialUnitService.createFinancialUnit(name).then((financialUnit: IFinancialUnit) => {
+        financialUnit.id
         res.status(200).send(financialUnit);
     }).catch((err) => {
         res.status(500).send(err);
     });
 });
 
-router.get('/financialunit/getallfinancialunits', (_req: Request, res: Response) => {
-    console.log('Request at /financialunit/getallfinancialunits route received');
+router.get('/getallfinancialunits', (req: Request, res: Response) => {
+    logService.logActivity(req);
     financialUnitService.getAllFinancialUnits().then((financialUnits: IFinancialUnit[]) => {
         res.status(200).send(financialUnits);
     }).catch((err) => {
+        logService.logError(err);
         res.status(500).send(err);
     });
 });
 
-router.get('/financialunit/deletefinancialunit', (req: Request, res: Response) => {
+router.delete('/deletefinancialunit', (req: Request, res: Response) => {
+    logService.logActivity(req);
     const id: string = req.query.id;
     if (!id) {
         res.status(400).send('Missing URL parameter: id');
@@ -36,4 +40,4 @@ router.get('/financialunit/deletefinancialunit', (req: Request, res: Response) =
     }).catch((err) => {
         res.status(500).send(err);
     });
-})
+});

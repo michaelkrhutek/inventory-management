@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class PopUpsService {
 
   constructor() { }
+
+  handleApiError(err: any): void {
+    console.log(err);
+  }
 }

@@ -1,7 +1,6 @@
 import { IIconItem } from "./icon-item";
 import { Observable, of } from 'rxjs';
 import { ITextItem, TextItem } from './text-item';
-import { isArray } from 'util';
 
 export interface IListItem {
     textItems: ITextItem[];
@@ -31,7 +30,7 @@ export class ListItem {
         if (!iconItems) {
             return of([]);
         }
-        if (isArray(iconItems)) {
+        if (Array.isArray(iconItems)) {
             return of(iconItems);
         }
         return iconItems;

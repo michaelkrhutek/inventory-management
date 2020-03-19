@@ -1,6 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { SocketService } from 'src/app/services/socket.service';
-import { Observable } from 'rxjs';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -10,18 +8,5 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent {
 
-  constructor(
-    private socketService: SocketService
-  ) { }
-
-  data$: Observable<string[]> = this.socketService.data$;
-
-  emitSocketEvent(key: number, value: string): void {
-    console.log(key, value)
-    this.socketService.emitSocketMessage(key, value || '');
-  }
-
-  trackByFn(index: number): number {
-    return index;
-  }
+  constructor() { }
 }

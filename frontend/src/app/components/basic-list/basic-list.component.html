@@ -3,8 +3,8 @@
         <mat-spinner></mat-spinner>
     </div>
     <ng-template #dataLoaded>
-        <button *ngIf="iconItem" class="top-list-icon-button" mat-mini-fab [matTooltip]="iconItem.description" (click)="iconAction.action()">
-            <mat-icon>{{ itemItem.iconName }}</mat-icon>
+        <button *ngIf="iconItem" class="top-list-icon-button" mat-mini-fab [matTooltip]="iconItem.description" (click)="iconItem.action()">
+            <mat-icon>{{ iconItem.iconName }}</mat-icon>
           </button>
         <div *ngIf="listItems && listItems.length > 0; else noData" class="list-items-container">
             <app-list-item *ngFor="let item of listItems" [data]="item"></app-list-item>
