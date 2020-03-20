@@ -13,31 +13,37 @@ import {
   MatSliderModule,
   MatCheckboxModule,
   MatSelectModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatTabsModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from "@angular/material";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './views/home/home.component';
-import { InventoryItemsComponent } from './views/inventory-items/inventory-items.component';
 import { BasicListComponent } from './components/basic-list/basic-list.component';
 import { PaginatedListComponent } from './components/paginated-list/paginated-list.component';
 import { LoadingModalComponent } from './components/loading-modal/loading-modal.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { IconItemComponent } from './components/icon-item/icon-item.component';
 import { CommonModule } from '@angular/common';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NewInventoryItemComponent } from './views/new-inventory-item/new-inventory-item.component';
-import { InventoryTransactionsComponent } from './views/inventory-transactions/inventory-transactions.component';
-import { NewInventoryTransactionComponent } from './views/new-inventory-transaction/new-inventory-transaction.component';
 import { FinancialUnitsComponent } from './views/financial-units/financial-units.component';
-import { NewFinancialUnitComponent } from './views/new-financial-unit/new-financial-unit.component';
-import { FinancialAccountsComponent } from './views/financial-accounts/financial-accounts.component';
-import { NewFinancialAccountComponent } from './views/new-financial-account/new-financial-account.component';
-import { NewFinancialPeriodComponent } from './views/new-financial-period/new-financial-period.component';
-import { NewInventoryGroupItemsComponent } from './views/new-inventory-group-items/new-inventory-group-items.component';
 import { environment } from 'src/environments/environment';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { FinancialUnitDetailsComponent } from './views/financial-unit-details/financial-unit-details.component';
+import { NewFinancialUnitModalComponent } from './views/financial-units/new-financial-unit-modal/new-financial-unit-modal.component';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { FinancialAccountsTabComponent } from './views/financial-unit-details/financial-accounts-tab/financial-accounts-tab.component';
+import { FinancialPeriodsTabComponent } from './views/financial-unit-details/financial-periods-tab/financial-periods-tab.component';
+import { NewFinancialPeriodModalComponent } from './views/financial-unit-details/financial-periods-tab/new-financial-period-modal/new-financial-period-modal.component';
+import { NewFinancialAccountModalComponent } from './views/financial-unit-details/financial-accounts-tab/new-financial-account-modal/new-financial-account-modal.component';
+import { InventoryItemsGroupsTabComponent } from './views/financial-unit-details/inventory-items-groups-tab/inventory-items-groups-tab.component';
+import { NewInventoryItemsGroupModalComponent } from './views/financial-unit-details/inventory-items-groups-tab/new-inventory-items-group-modal/new-inventory-items-group-modal.component';
+import { InventoryItemsTabComponent } from './views/financial-unit-details/inventory-items-tab/inventory-items-tab.component';
+import { NewInventoryItemModalComponent } from './views/financial-unit-details/inventory-items-tab/new-inventory-item-modal/new-inventory-item-modal.component';
 
 export const getBaseUrl = () => {
   if (environment.production) {
@@ -52,21 +58,24 @@ export const getBaseUrl = () => {
   declarations: [
     AppComponent,
     HomeComponent,
-    InventoryItemsComponent,
     BasicListComponent,
     PaginatedListComponent,
     LoadingModalComponent,
     ListItemComponent,
     IconItemComponent,
-    NewInventoryItemComponent,
-    InventoryTransactionsComponent,
-    NewInventoryTransactionComponent,
     FinancialUnitsComponent,
-    NewFinancialUnitComponent,
-    FinancialAccountsComponent,
-    NewFinancialAccountComponent,
-    NewFinancialPeriodComponent,
-    NewInventoryGroupItemsComponent
+    SnackbarComponent,
+    FinancialUnitDetailsComponent,
+    NewFinancialUnitModalComponent,
+    NavigationBarComponent,
+    FinancialAccountsTabComponent,
+    FinancialPeriodsTabComponent,
+    NewFinancialPeriodModalComponent,
+    NewFinancialAccountModalComponent,
+    InventoryItemsGroupsTabComponent,
+    NewInventoryItemsGroupModalComponent,
+    InventoryItemsTabComponent,
+    NewInventoryItemModalComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +94,10 @@ export const getBaseUrl = () => {
     MatSelectModule,
     MatTooltipModule,
     ReactiveFormsModule,
-    NoopAnimationsModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] }

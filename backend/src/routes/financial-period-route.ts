@@ -5,7 +5,7 @@ import { IFinancialPeriod } from '../models/financial-period-model';
 
 export const router = Router();
 
-router.get('/createfinancialperiod', (req: Request, res: Response) => {
+router.post('/createfinancialperiod', (req: Request, res: Response) => {
     logService.logActivity(req);
     const startDateString: string = req.query.startDate;
     const endDateString: string = req.query.endDate;
@@ -26,7 +26,7 @@ router.get('/createfinancialperiod', (req: Request, res: Response) => {
     });
 });
 
-router.post('/getallfinancialperiods', (req: Request, res: Response) => {
+router.get('/getallfinancialperiods', (req: Request, res: Response) => {
     logService.logActivity(req);
     const financialUnitId: string = req.query.financialUnitId;
     if (!financialUnitId) {

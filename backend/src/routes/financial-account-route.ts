@@ -11,7 +11,7 @@ router.post('/createfinancialaccount', (req: Request, res: Response) => {
     const code: string = req.query.code;
     const accountType: string = req.query.accountType;
     const financialUnitId: string = req.query.financialUnitId;
-    console.log(name, code, financialUnitId);
+    console.log(name, code, accountType, financialUnitId);
     if (!name || !code || !accountType || !financialUnitId) {
         res.status(400).send('Missing URL parameter(s)');
     }

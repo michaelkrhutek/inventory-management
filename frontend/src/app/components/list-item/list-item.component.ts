@@ -13,8 +13,4 @@ export class ListItemComponent {
 
   @Input() data: ListItem;
   @Input() isBoxShadowVisible: boolean = true;
-
-  ngOnInit(): void {
-    console.log(this.data);
-  }
 }

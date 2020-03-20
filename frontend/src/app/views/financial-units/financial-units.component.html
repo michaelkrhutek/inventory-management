@@ -1,5 +1,5 @@
-<p>financial-units works!</p>
+<div class="view-container">
+    <app-basic-list [listItems]="listItems$ | async" [iconItem]="openNewFinancialUnitModalIconItem" [isLoadingData]="isLoadingData"></app-basic-list>
+</div>
 
-<app-basic-list [listItems]="listItems$ | async" [iconItem]="openNewFinancialUnitModalIconItem" [isLoadingData]="isLoadingData"></app-basic-list>
-
-<app-new-financial-unit *ngIf="isNewFinancialUnitModalOpened" (close)="closeNewFinancialUnitModal()"></app-new-financial-unit>
+<app-new-financial-unit-modal *ngIf="isNewFinancialUnitModalOpened" (close)="closeNewFinancialUnitModal()"></app-new-financial-unit-modal>

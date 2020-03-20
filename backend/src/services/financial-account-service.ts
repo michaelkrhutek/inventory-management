@@ -17,7 +17,7 @@ export const isAccountTypeStringValid = (accountTypeString: string): boolean => 
         FinancialAccountType.Liabilities,
         FinancialAccountType.Revenues
     ];
-    return accountTypes.some((type: FinancialAccountType) => type == accountTypeString);
+    return accountTypes.some((type: FinancialAccountType) => type.toString() == accountTypeString);
 }
 
 export const createFinancialAccount = async (
@@ -26,7 +26,7 @@ export const createFinancialAccount = async (
     accountType: string,
     financialUnitId: string
 ): Promise<IFinancialAccount> => {
-    if (isAccountTypeStringValid(accountType)) {
+    if (!isAccountTypeStringValid(accountType)) {
         throw('Invalid account type');
     }
     if (!await isFinancialAccountNameUnique(name, financialUnitId)) {

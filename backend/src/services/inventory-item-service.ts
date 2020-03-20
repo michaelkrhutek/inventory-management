@@ -5,15 +5,18 @@ export const isInventoryItemNameUnique = async (name: string, financialUnitId: s
     return !(await InventoryItemModel.exists({ name, financialUnitId }).catch(() => true));
 };
 
-export const createInventoryItem = async (name: string, financialUnitId: string): Promise<IInventoryItem> => {
+export const createInventoryItem = async (
+    name: string,
+    inventoryItemsGroupId: string,
+    financialUnitId: string): Promise<IInventoryItem> => {
     const isNameUnique: boolean = await isInventoryItemNameUnique(name, financialUnitId);
     if (!isNameUnique) {
         throw('Name is already used by other inventory item');
     }
-    const inventoryItem = new InventoryItemModel({ name, financialUnitId });
+    const inventoryItem = new InventoryItemModel({ name, financialUnitId, inventoryItemsGroupId });
     return await inventoryItem.save().catch((err) => {
         logService.logError(err);
-        throw('Error while saving a inventory item to a database');
+        throw('Error while saving an inventory item to a database');
     });
 }
 

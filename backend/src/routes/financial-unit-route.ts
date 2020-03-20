@@ -29,6 +29,20 @@ router.get('/getallfinancialunits', (req: Request, res: Response) => {
     });
 });
 
+router.get('/getfinancialunit', (req: Request, res: Response) => {
+    logService.logActivity(req);
+    const id: string = req.query.id;
+    if (!id) {
+        res.status(400).send('Missing URL parameter: id');
+    }
+    financialUnitService.getFinancialUnit(id).then((financialUnit: IFinancialUnit) => {
+        res.status(200).send(financialUnit);
+    }).catch((err) => {
+        logService.logError(err);
+        res.status(500).send(err);
+    });
+});
+
 router.delete('/deletefinancialunit', (req: Request, res: Response) => {
     logService.logActivity(req);
     const id: string = req.query.id;

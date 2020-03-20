@@ -2,8 +2,11 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FinancialUnitService } from 'src/app/services/financial-unit.service';
 import { Observable } from 'rxjs';
 import { ListItem, IListItem } from 'src/app/models/list-item';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, switchMap } from 'rxjs/operators';
 import { IIconItem } from 'src/app/models/icon-item';
+import { PopUpsService } from 'src/app/services/pop-ups.service';
+import { SnackbarType } from 'src/app/models/snackbar-data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-financial-units',
@@ -14,7 +17,9 @@ import { IIconItem } from 'src/app/models/icon-item';
 export class FinancialUnitsComponent {
 
   constructor(
-    private financialUnitsService: FinancialUnitService
+    private financialUnitsService: FinancialUnitService,
+    private popUpsService: PopUpsService,
+    private router: Router
   ) { }
 
   isNewFinancialUnitModalOpened: boolean = false;
@@ -27,8 +32,9 @@ export class FinancialUnitsComponent {
     action: () => this.openNewFinancialUnitModal()
   };
 
-  financialUnits$: Observable<IFinancialUnit[]> = this.financialUnitsService.getFinancialUnits$().pipe(
-    tap(() => (this.isLoadingData = true))
+  financialUnits$: Observable<IFinancialUnit[]> = this.financialUnitsService.reloadFinancialUnits$.pipe(
+    tap(() => (this.isLoadingData = true)),
+    switchMap(() => this.financialUnitsService.getFinancialUnits$())
   );
 
   listItems$: Observable<ListItem[]> = this.financialUnits$.pipe(
@@ -40,7 +46,19 @@ export class FinancialUnitsComponent {
     const data: IListItem = {
       textItems: [
         { label: 'Name', value: financialUnit.name, width: 12 }
-      ]
+      ],
+      iconItemsEnd: [
+        {
+          iconName: 'launch',
+          description: 'Open',
+          action: () => {
+            console.log(financialUnit._id);
+            this.popUpsService.openLoadingModal({ message: 'Opening a financial unit' });
+            this.router.navigate(['financial-unit', financialUnit._id]).finally(() => this.popUpsService.closeLoadingModal())
+          }
+        }
+      ],
+      iconItemsEndContainerWidth: 2
     };
     return new ListItem(data);
   }
@@ -51,5 +69,9 @@ export class FinancialUnitsComponent {
 
   closeNewFinancialUnitModal(): void {
     this.isNewFinancialUnitModalOpened = false;
+  }
+
+  showSnackbar(): void {
+    this.popUpsService.showSnackbar({ message: 'Snackbar works', type: SnackbarType.Success });
   }
 }

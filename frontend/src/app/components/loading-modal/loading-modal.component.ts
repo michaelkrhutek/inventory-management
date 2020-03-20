@@ -1,4 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { PopUpsService } from 'src/app/services/pop-ups.service';
+import { Observable } from 'rxjs';
+import { ILoadingModalData } from 'src/app/models/loading-modal-data';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-loading-modal',
@@ -6,11 +10,13 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./loading-modal.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoadingModalComponent implements OnInit {
+export class LoadingModalComponent {
 
-  constructor() { }
+  constructor(
+    private popUpsService: PopUpsService
+  ) { }
 
-  ngOnInit() {
-  }
-
+  data$: Observable<ILoadingModalData> = this.popUpsService.loadingModalData$.pipe(
+    tap(v => console.log(v))
+  );
 }

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './views/home/home.component';
 import { FinancialUnitsComponent } from './views/financial-units/financial-units.component';
+import { FinancialUnitDetailsComponent } from './views/financial-unit-details/financial-unit-details.component';
+import { GetFinancialUnitResolver } from './resolvers/get-financial-unit.resolver';
 
 
 const routes: Routes = [
@@ -10,8 +11,13 @@ const routes: Routes = [
     component: FinancialUnitsComponent
   },
   {
+    path: 'financial-unit/:financialUnitId',
+    component: FinancialUnitDetailsComponent,
+    resolve: { financialUnit: GetFinancialUnitResolver }
+  },
+  {
     path: '**',
-    component: HomeComponent
+    component: FinancialUnitsComponent
   }
 ];
 
